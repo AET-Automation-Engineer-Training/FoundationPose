@@ -1,5 +1,11 @@
 FROM nvidia/cuda:12.1.0-devel-ubuntu20.04
 
+RUN printf "Acquire::http::Pipeline-Depth 0;\nAcquire::http::No-Cache true;\nAcquire::BrokenProxy true;" > /etc/apt/apt.conf.d/99fixbadproxy
+
+RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get clean
+RUN apt-get update -o Acquire::CompressionTypes::Order::=gz
+
 ENV TZ=US/Pacific
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
