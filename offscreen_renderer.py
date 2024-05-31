@@ -25,6 +25,7 @@ import time
 import argparse,pickle
 from Utils import *
 
+os.environ['PYOPENGL_PLATFORM'] = 'egl' 
 
 cvcam_in_glcam = np.array([[1,0,0,0],
                           [0,-1,0,0],
